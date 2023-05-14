@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .shell {
+            width: 100%;
+			height: 5300px;
+            position: relative;
+            padding: 80px 0;
+            transition: 0.3s ease 0s;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        .shell:before {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(36, 36, 36, 0.8);
+            content: "";
+        }
+
+        .header {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .title {
+            color: #fff;
+            font-size: 46px;
+            font-weight: normal;
+            margin: 0;
+        }
+
+        .timeline {
+            display: flex;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            flex-direction: column;
+            max-width: 700px;
+            position: relative;
+        }
+
+        .content-title {
+            font-weight: normal;
+            font-size: 44px;
+            margin: -10px 0 0 0;
+            transition: 0.4s;
+            padding: 0 10px;
+            box-sizing: border-box;
+            color: #fff;
+        }
+
+        .content-desc {
+            margin-left: 10px;
+            font-size: 20px;
+            box-sizing: border-box;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 25px;
+        }
+
+        .timeline:before {
+            position: absolute;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            margin-left: -1px;
+            content: "";
+            
+        }
+
+        .item {
+            padding: 40px 0;
+            opacity: 0.3;
+            filter: blur(2px);
+            transition: 0.5s;
+            box-sizing: border-box;
+            width: calc(50% - 40px);
+            display: flex;
+            position: relative;
+            transform: translateY(-80px);
+        }
+
+        .item:before {
+            content: attr(data-text);
+            letter-spacing: 3px;
+            width: 100%;
+            position: absolute;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 13px;
+            border-left: 2px solid rgba(255, 255, 255, 0.5);
+            top: 70%;
+            margin-top: -5px;
+            padding-left: 15px;
+            opacity: 0;
+            right: calc(-100% - 56px);
+            font: 900 20px '';
+            letter-spacing: 5px;
+        }
+
+        .item:nth-child(even) {
+            align-self: flex-end;
+        }
+
+        .item:nth-child(even):before {
+            right: auto;
+            text-align: right;
+            left: calc(-100% - 56px);
+            padding-left: 0;
+            border-left: none;
+            border-right: 2px solid rgba(255, 255, 255, 0.5);
+            padding-right: 15px;
+        }
+
+        .item--active {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0px);
+        }
+
+        .item--active:before {
+            top: 50%;
+            transition: 0.3s all 0.2s;
+            opacity: 1;
+        }
+
+        .item--active .content-title {
+            margin: -50px 0 20px 0;
+        }
+
+        .img {
+            max-width: 100%;
+            
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 16px;
+            letter-spacing: 5px;
+            margin: 10px 0 0 0;
+            font-weight: normal;
+        }
+
+        .footer {
+            padding: 95px 0;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #999;
+            display: inline-block;
+        }
+
+        @media only screen and (max-width: 767px) {
+            .item {
+                align-self: baseline !important;
+                width: 100%;
+                padding: 0 30px 150px 80px;
+            }
+
+            .item:before {
+                left: 10px !important;
+                padding: 0 !important;
+                top: 50px;
+                text-align: center !important;
+                width: 60px;
+                border: none !important;
+            }
+
+            .item:last-child {
+                padding-bottom: 40px;
+            }
+        }
+
+        @media only screen and (max-width: 767px) {
+            .timeline:before {
+                left: 40px;
+            }
+        }
+
+		    img{
+				position: relative;
+				cursor: pointer;
+			}
+		    video{
+				margin-top: -270px;
+				margin-left: 20px;
+				border-radius: 10%;
+				display: none;
+		        position: absolute;
+		        left: 0;
+		        width: 90%;
+				height: 300px;
+				object-fit: cover;
+				}
+				#imgTest1{
+					margin-top: 30px;
+				}
+    </style>
+</head>
+
+<body>
+    <div class="shell" id="shell">
+        <div class="header">
+            <h2 class="title">”HertZ“听力可视化设计</h2>
+            <h3 class="subtitle"></h3>
+        </div>
+        <div class="timeline">
+            <div class="item" >
+                <div class="content">
+                    <img src="./img/01.png" name="./img/02.png" alt="" class="img" id="veImg1" onclick="oon('1')">
+					<video src="./mp4/1.avi" controls="" id="ve1" onended="eend('1')"></video>
+                    <h2 class="content-title">布谷鸟</h2>
+                    <p class="content-desc">
+                       声音频率6000-8000HZ，布谷鸟性格孤独。常单独活动。飞行快速而有力。常循直线前进。
+					   飞行时两翅震动幅度较大。但无声响。繁殖期间喜欢鸣叫。常站在乔木顶枝上鸣叫不息。
+					   有时晚上也鸣叫或边飞边鸣叫。叫声凄厉宏亮。很远便能听到它“布谷～布谷～”的粗犷而单调的声音。每分钟可反复叫20次。鸣声响亮。二声一度。
+                    </p>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="content">
+                    <img src="./img/04.png" name="./img/03.png" alt="" class="img" id="veImg2" onclick="oon('2')">
+					<video src="./mp4/2.avi" controls="" id="ve2" onended="eend('2')"></video>
+                    <h2 class="content-title">蜻蜓</h2>
+                    <p class="content-desc">
+                       声音频率200-500HZ，嗡嗡，是翅膀的声音，蜻蜓飞得很快，有些飞行时速可达100公里，而它又能在空中短暂停身不动。
+					   它飞行前进时不能灵活转变方向，要定住身体然后转向。
+					   在休息时翅膀仍旧外伸，即不能折叠翅膀，所以停留的地方要有相当的空间，多半在枝头或叶顶。
+                    </p>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="content">
+                    <img src="./img/05.png" name="./img/06.png" alt="" class="img" id="veImg3" onclick="oon('3')">
+					<video src="./mp4/3.avi" controls="" id="ve3" onended="eend('3')"></video>
+                    <h2 class="content-title">风吹树叶</h2>
+                    <p class="content-desc">
+                        声音频率70-1600HZ，风如鞭抽打树丛， 树如针切削着风，
+                        风可以说是树在哭泣， 树可以说是风在呻吟。
+                    </p>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="content">
+                    <img src="./img/07.png" name="./img/08.png" alt="" class="img" id="veImg4" onclick="oon('4')">
+					<video src="./mp4/4.avi" controls="" id="ve4" onended="eend('4')"></video>
+                    <h2 class="content-title">鲸鱼</h2>
+                    <p class="content-desc">
+                       声音频率15-25HZ。鲸鱼发出的是超声波。
+					   人耳可以听到的声波的频率是20Hz-20KHz，低于20Hz的称为次声波，高于20KHz地称为超声波。
+					   正常鲸的频率是15-25Hz，但是我们可以借助仪器将它的声音转换成我们可以听见的声音。
+                    </p>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="content">
+                    <img src="./img/09.png" name="./img/10.png" alt="" class="img" id="veImg5" onclick="oon('5')">
+					<video src="./mp4/5.avi" controls="" id="ve5" onended="eend('5')"></video>
+                    <h2 class="content-title">海鸥</h2>
+                    <p class="content-desc">
+                        声音频率6000-8000HZ，如海鸥与波涛相遇一般，
+                        海鸥飞散，波涛滚滚而逝。
+                    </p>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="content">
+                    <img src="./img/11.png" name="./img/12.png" alt="" class="img" id="veImg6" onclick="oon('6')">
+					<video src="./mp4/6.avi" controls="" id="ve6" onended="eend('6')"></video>
+                    <h2 class="content-title">海浪</h2>
+                    <p class="content-desc">
+                        声音频率1000-2000HZ。海浪卷走卵石，然后转回头来又把它们抛到高高的海滩之上涌起，停息，再重新涌起。
+                    </p>
+                </div>
+            </div>
+			<div class="item">
+			    <div class="content">
+			        <img src="./img/13.png" height="260" width="260" name="./img/14.png" alt="" class="img" id="veImg7" onclick="oon('7')">
+					<video src="./mp4/7.avi" controls="" id="ve7" onended="eend('7')"></video>
+			        <h2 class="content-title" id="imgTest1">拜托了！世界</h2>
+			        <p class="content-desc">
+			            低频特别版（片段节选）
+			        </p>
+			    </div>
+			</div>
+			<div class="item">
+			    <div class="content">
+			        <img src="./img/15.png" height="260" width="260" name="./img/16.png" alt="" class="img" id="veImg8" onclick="oon('8')">
+					<video src="./mp4/8.avi" controls="" id="ve8" onended="eend('8')"></video>
+			        <h2 class="content-title" id="imgTest1">我的城</h2>
+			        <p class="content-desc">
+			            低频特别版（片段节选）
+			        </p>
+			    </div>
+			</div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>
+
+		    function oon(i){
+				
+				for (q = 1;q<=8;q++) {
+					if(q == parseInt(i)){
+						let ve = document.getElementById('ve'+i);
+						ve.style.display = "block";
+						ve.style.zIndex = "1";
+						ve.play();
+					}else{
+						let ve = document.getElementById('ve'+q);
+						ve.style.display = "none";
+						ve.pause();
+						ve.currentTime = 0;
+					}
+					
+				}
+		    };
+			
+			function eend(i){
+			let ve = document.getElementById('ve'+i);
+			ve.style.display = "none";
+			ve.currentTime = 0;
+			}
+			
+	
+
+        (function ($) {
+            $.fn.timeline = function () {
+                var selectors = {
+                    id: $(this),
+                    item: $(this).find(".item"),
+                    activeClass: "item--active",
+                    img: ".img"
+                };
+                // 将第一个时间轴项目激活，并设置时间轴背景图片为第一个项目的图片
+                selectors.item.eq(0).addClass(selectors.activeClass);
+                selectors.id.css(
+                    "background-image",
+                    "url(" +
+                    selectors.item.first()
+                        .find(selectors.img)
+                        .attr("name") +
+                    ")"
+                );
+                // 获取时间轴项目的总数
+                var itemLength = selectors.item.length;
+                // 当页面滚动时，触发滚动事件
+                $(window).scroll(function () {
+                    var max, min;
+                    // 获取页面滚动的距离
+                    var pos = $(this).scrollTop();
+                    selectors.item.each(function (i) {
+                        // 获取当前时间轴项目的最小和最大高度
+                        min = $(this).offset().top;
+                        max = $(this).height() + $(this).offset().top;
+                        var that = $(this);
+                        // 如果滚动到最后一个项目，并且超过了当前项目高度的一半，
+                        // 则将最后一个项目设置为激活状态，并设置背景图片为最后一个项目的图片
+                        if (i == itemLength - 2 && pos > min + $(this).height() / 2) {
+                            selectors.item.removeClass(selectors.activeClass);
+                            selectors.id.css(
+                                "background-image",
+                                "url(" +
+                                selectors.item.last()
+                                    .find(selectors.img)
+                                    .attr("name") +
+                                ")"
+                            );
+                            selectors.item.last().addClass(selectors.activeClass);
+                        }
+                        // 如果当前滚动位置在当前项目的最小和最大高度之间，
+                        // 则将当前项目设置为激活状态，并设置背景图片为当前项目的图片
+                        else if (pos <= max - 10 && pos >= min) {
+                            selectors.id.css(
+                                "background-image",
+                                "url(" +
+                                $(this)
+                                    .find(selectors.img)
+                                    .attr("name") +
+                                ")"
+                            );
+                            selectors.item.removeClass(selectors.activeClass);
+                            $(this).addClass(selectors.activeClass);
+                        }
+                    });
+                });
+            };
+        })(jQuery)
+        /*
+        最后，我们调用 timeline 插件并传入时间轴的 ID 作为参数。
+        这将启用时间轴插件并为该时间轴绑定滚动事件。
+        */
+       $("#shell").timeline();
+
+
+    </script>
+</body>
+
+</html>
